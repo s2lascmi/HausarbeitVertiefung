@@ -1,8 +1,4 @@
-import pandas as pd
 import json
-import pprint
-import matplotlib.pyplot as plt
-from pprint import pprint
 
 # URL, von der die Daten abgerufen werden
 # URL = "https://www.landesmuseum-stuttgart.de/lmwallobjects.json"
@@ -55,7 +51,6 @@ def delete_false(data):
         if data[i]["objektjahr"] == 0:
             data.pop(i)
         i +=1
-    print(data)
     return data
 
 
@@ -65,91 +60,152 @@ def sort_entries(data):
     return sorted_data
 
 def create_third_layer(data):
-    anz_dict1 = 0   #0-249
-    anz_dict2 = 0   #250-499
-    anz_dict3 = 0   #500-749
-    anz_dict4 = 0   #750-999
-    anz_dict5 = 0   #1000-1100
-    anz_dict6 = 0   #1100-1249
-    anz_dict7 = 0   #1250-1400
-    anz_dict8 = 0   #1400-1499
-    anz_dict9 = 0  # 1500-1600
-    anz_dict10 = 0  # 1600-1749
-    anz_dict11 = 0  # 1750-1900
-    anz_dict12 = 0  # 1900-1999
+    anz_dict_0_249 = 0   #0-249
+    anz_dict_250_499 = 0   #250-499
+    anz_dict_500_749 = 0   #500-749
+    anz_dict_750_999 = 0   #750-999
+    anz_dict_1000_1099 = 0   #1000-1099
+    anz_dict_1100_1249 = 0   #1100-1249
+    anz_dict_1250_1399 = 0   #1250-1399
+    anz_dict_1400_1499 = 0   #1400-1499
+    anz_dict_1500_1599 = 0  # 1500-1599
+    anz_dict_1600_1749 = 0  # 1600-1749
+    anz_dict_1750_1899 = 0  # 1750-1899
+    anz_dict_1900_1999 = 0  # 1900-1999
+    anz_dict_2000_2009 = 0  # 2000-2009
+    anz_dict_2010_2022 = 0  # 2010-2022
 
-    liste_dict1 = []
-    liste_dict2 = []
-    liste_dict3 = []
-    liste_dict4 = []
-    liste_dict5 = []
-    liste_dict6 = []
-    liste_dict7 = []
-    liste_dict8 = []
-    liste_dict9 = []
-    liste_dict10 = []
-    liste_dict11 = []
-    liste_dict12= []
+    liste_dict_0_249 = []
+    liste_dict_250_499 = []
+    liste_dict_500_749 = []
+    liste_dict_750_999 = []
+    liste_dict_1000_1099 = []
+    liste_dict_1100_1249 = []
+    liste_dict_1250_1399 = []
+    liste_dict_1400_1499 = []
+    liste_dict_1500_1599 = []
+    liste_dict_1600_1749 = []
+    liste_dict_1750_1899 = []
+    liste_dict_1900_1999 = []
+    liste_dict_2000_2009 = []
+    liste_dict_2010_2022 = []
 
     for entry in data:
         if 0 <= int(entry["objektjahr"]) <= 249:
-            liste_dict1.append({"name": entry["name"], "value": 1})
-            anz_dict1 += 1
+            liste_dict_0_249.append({"name": entry["name"], "value": 1})
+            anz_dict_0_249 += 1
         if 250 <= int(entry["objektjahr"]) <= 499:
-            liste_dict2.append({"name": entry["name"], "value": 1})
-            anz_dict2 += 1
+            liste_dict_250_499.append({"name": entry["name"], "value": 1})
+            anz_dict_250_499 += 1
         if 500 <= int(entry["objektjahr"]) <= 749:
-            liste_dict3.append({"name": entry["name"], "value": 1})
-            anz_dict3 += 1
+            liste_dict_500_749 .append({"name": entry["name"], "value": 1})
+            anz_dict_500_749 += 1
         if 750 <= int(entry["objektjahr"]) <= 999:
-            liste_dict4.append({"name": entry["name"], "value": 1})
-            anz_dict4 += 1
-        if 1000 <= int(entry["objektjahr"]) <= 1100:
-            liste_dict5.append({"name": entry["name"], "value": 1})
-            anz_dict5 += 1
+            liste_dict_750_999.append({"name": entry["name"], "value": 1})
+            anz_dict_750_999 += 1
+        if 1000 <= int(entry["objektjahr"]) <= 1099:
+            liste_dict_1000_1099.append({"name": entry["name"], "value": 1})
+            anz_dict_1000_1099 += 1
         if 1100 <= int(entry["objektjahr"]) <= 1249:
-            liste_dict6.append({"name": entry["name"], "value": 1})
-            anz_dict6 += 1
-        if 1240 <= int(entry["objektjahr"]) <= 1400:
-            liste_dict7.append({"name": entry["name"], "value": 1})
-            anz_dict7 += 1
+            liste_dict_1100_1249.append({"name": entry["name"], "value": 1})
+            anz_dict_1100_1249 += 1
+        if 1240 <= int(entry["objektjahr"]) <= 1399:
+            liste_dict_1250_1399.append({"name": entry["name"], "value": 1})
+            anz_dict_1250_1399 += 1
         if 1400 <= int(entry["objektjahr"]) <= 1499:
-            liste_dict8.append({"name": entry["name"], "value": 1})
-            anz_dict8 += 1
-        if 1500 <= int(entry["objektjahr"]) <= 1600:
-            liste_dict9.append({"name": entry["name"], "value": 1})
-            anz_dict9 += 1
+            liste_dict_1400_1499.append({"name": entry["name"], "value": 1})
+            anz_dict_1400_1499 += 1
+        if 1500 <= int(entry["objektjahr"]) <= 1599:
+            liste_dict_1500_1599.append({"name": entry["name"], "value": 1})
+            anz_dict_1500_1599 += 1
         if 1600 <= int(entry["objektjahr"]) <= 1749:
-            liste_dict10.append({"name": entry["name"], "value": 1})
-            anz_dict10 += 1
-        if 1750 <= int(entry["objektjahr"]) <= 1900:
-            liste_dict11.append({"name": entry["name"], "value": 1})
-            anz_dict11 += 1
+            liste_dict_1600_1749.append({"name": entry["name"], "value": 1})
+            anz_dict_1600_1749 += 1
+        if 1750 <= int(entry["objektjahr"]) <= 1899:
+            liste_dict_1750_1899.append({"name": entry["name"], "value": 1})
+            anz_dict_1750_1899 += 1
         if 1900 <= int(entry["objektjahr"]) <= 1999:
-            liste_dict12.append({"name": entry["name"], "value": 1})
-            anz_dict12 += 1
+            liste_dict_1900_1999.append({"name": entry["name"], "value": 1})
+            anz_dict_1900_1999 += 1
+        if 2000 <= int(entry["objektjahr"]) <= 2009:
+            liste_dict_2000_2009.append({"name": entry["name"], "value": 1})
+            anz_dict_2000_2009 += 1
+        if 2010 <= int(entry["objektjahr"]) <= 2022:
+            liste_dict_2010_2022.append({"name": entry["name"], "value": 1})
+            anz_dict_2010_2022 += 1
         else:
-            print("not in list")
+            print("\n")
+
+    #Dictionaries zweiter Ebene erstellen
+    dict_0_499 = {
+     "name": "0-499",
+     "children": [liste_dict_0_249, liste_dict_250_499]}
+    dict_500_999 = {
+     "name": "500-999",
+     "children": [liste_dict_500_749 , liste_dict_750_999]}
+    dict_1000_1249 = {
+        "name": "1000-1249",
+        "children": [liste_dict_1000_1099, liste_dict_1100_1249]}
+    dict_1250_1499 = {
+        "name": "1250-1499",
+        "children": [liste_dict_1250_1399, liste_dict_1400_1499]}
+    dict_1500_1749 = {
+        "name": "1500_1749",
+        "children": [liste_dict_1500_1599, liste_dict_1600_1749]}
+    dict_1750_1999 = {
+        "name": "1750_1999",
+        "children": [liste_dict_1750_1899, liste_dict_1900_1999]}
+    dict_2000_2009 = {
+        "name": "2000-2009",
+        "children": [liste_dict_2000_2009]}
+    dict_2010_2022 = {
+        "name": "2010-2022",
+        "children": [liste_dict_2010_2022]}
+
+    #Dictionaries erster Ebene erstellen
+    dict_0_999 = {
+        "name": "0-999",
+        "children": [dict_0_499, dict_500_999]}
+    dict_1000_1499 = {
+        "name": "1000_1499",
+        "children": [dict_1000_1249, dict_1250_1499]}
+    dict_1500_1999 = {
+        "name": "1500-1999",
+        "children": [dict_1500_1749, dict_1750_1999]}
+    dict_2000_2022 = {
+        "name": "2000-2022",
+        "children": [dict_2000_2009, dict_2010_2022]}
+
+
+    #oberste Ebene erstellen
+    dict_total = {
+            "name": "flare",
+            "children": [dict_0_999, dict_1000_1499, dict_1500_1999, dict_2000_2022]
+    }
+
+    #print(dict_total)
+    return(dict_total)
 
 
     #Einteilung nach Epochen:
     # 0-999 --- 0-499; 500-999; --- 0-249; 250-499; 500-749; 750-999
-    # 1000-1499 --- 1000-1249; 1250-1499; --- 1000-1100; 1100-1249; 1250-1400; 1400-1499
-    # 1500-1999 --- 1500-1749; 1759-1999; --- 1500-1600; 1600-1749; 1750-1900; 1900-1999
-    # 2000-2022 --- 2000-2010; 2010-2020;
+    # 1000-1499 --- 1000-1249; 1250-1499; --- 1000-1099; 1100-1249; 1250-1399; 1400-1499
+    # 1500-1999 --- 1500-1749; 1750-1999; --- 1500-1599; 1600-1749; 1750-1899; 1900-1999
+    # 2000-2022 --- 2000-2009; 2010-2020;
 
-    #     overall = {"name": "flare", "children": [{"name" : "Jahre 0-999", "children": },
-    #                                              {"name": "Jahre 1000-1499","children":}
-    #                                              {"name": "Jahre 1500-1999", "children":}
-    #                                              {"name": "Jahre 2000-2022", "children": }]}
 
 
 
 def main():
-    json = read_file()
-    cleaned_data = extract_info(json)
+    raw_data = read_file()
+    cleaned_data = extract_info(raw_data)
     delete_false(cleaned_data)
-    create_third_layer(cleaned_data)
+    final_data = create_third_layer(cleaned_data)
+
+    fileName = "my-data.json"
+    file = open(fileName, "w")
+    json.dump(final_data, file)
+    file.close()
 
 
 if __name__ == "__main__":
