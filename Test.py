@@ -1,36 +1,39 @@
 import json
 
-# URL, von der die Daten abgerufen werden
-# URL = "https://www.landesmuseum-stuttgart.de/lmwallobjects.json"
-
-
-# Fetch JSON data from a given url
-filename = "testdateiHA.json"
-
 
 def read_file():
-    # Read file contents
+    # Datei einlesen
+    filename = "testdateiHA.json"
     with open(filename, "r") as file:
         data = json.load(file)
     return data
 
+
 def extract_info(data):
-    # Je Dictionary in JSON-Datei einen Dateneintrag für das (Erstellungs-) Jahr und Name hinzufügen
+    # Je Dictionary in JSON-Datei einen Dateneintrag für das (Erstellungs-) Jahr und ID hinzufügen
     i = 0
     for data[i] in data:
         # Jahr als Dictionary-Eintrag hinzufügen (aus Name)
         year = data[i]["objekt_name"]
-        year = year[-4:]
-        if year.isdigit() == True:
-            data[i]["objektjahr"] = year
+        year_1 = year[-4:]
+        year_2 = year[-3:]
+        year_3 = year[-2:]
+        year_4 = year[-1:]
+        # Prüfen, ob year auch wirklich Jahreszahl ist oder nicht, wenn nicht "0" einfügen
+        if year_1.isdigit() == True:
+            data[i]["objektjahr"] = year_1
+        elif year_2.isdigit() == True:
+            data[i]["objektjahr"] = year_2
+        elif year_3.isdigit() == True:
+            data[i]["objektjahr"] = year_3
+        elif year_4.isdigit() == True:
+            data[i]["objektjahr"] = year_4
         else:
-            data[i]["objektjahr"] = 0
-        # Name als Dictionary-Eintrag hinzufügen (aus Name und ID)
-        name = data[i]["objekt_name"]
-        name = name[:-6]
+            data[i]["objektjahr"] = 102983
+        # ID extrahieren
         id = data[i]["objekt_id"]
+        data[i]["name"] = str("https://bit.ly/3xvZi3a/" + str(id))
         # nicht nötige Key-Value-Paare entfernen
-        data[i]["name"] = str("https://bit.ly/3xvZi3a" + str(id))
         data[i].pop("objekt_id")
         data[i].pop("objekt_name")
         data[i].pop("objekt_inventarnr")
@@ -44,20 +47,18 @@ def extract_info(data):
     return data
 
 
-def delete_false(data):
-    # Einträge, die mit einer 0 als Entstehungsdatum versehen sind, werden gelöscht
-    i = 0
-    for data[i] in data:
-        if data[i]["objektjahr"] == 0:
-            data.pop(i)
-        i +=1
-    return data
-
-
-def sort_entries(data):
-    # Liste der Dictionarys nach Wert des Keys "objekt_jahr" sortieren
-    sorted_data = sorted(data, key=lambda x: x['objektjahr'])
-    return sorted_data
+# def delete_false(data):
+#     print(data)
+#     # Einträge, die mit einer 0 als Entstehungsdatum versehen sind, werden gelöscht
+#     i = 0
+#     for data[i] in data:
+#         print(data[i])
+#         if data[i]["objektjahr"] == 0:
+#             print("null")
+#             data.pop(i)
+#         i += 1
+#     print(data)
+#     return data
 
 
 def create_third_layer(data):
@@ -89,26 +90,26 @@ def create_third_layer(data):
         if 0 <= int(entry["objektjahr"]) <= 499:
             liste_dict_0_499.append({"name": entry["name"], "value": 1})
             anz_dict_0_249 += 1
-        if 500 <= int(entry["objektjahr"]) <= 999:
+        elif 500 <= int(entry["objektjahr"]) <= 999:
             liste_dict_500_999.append({"name": entry["name"], "value": 1})
             anz_dict_500_749 += 1
-        if 1000 <= int(entry["objektjahr"]) <= 1249:
+        elif 1000 <= int(entry["objektjahr"]) <= 1249:
             liste_dict_1000_1249.append({"name": entry["name"], "value": 1})
             anz_dict_1000_1099 += 1
-        if 1250 <= int(entry["objektjahr"]) <= 1499:
+        elif 1250 <= int(entry["objektjahr"]) <= 1499:
             liste_dict_1250_1499.append({"name": entry["name"], "value": 1})
             anz_dict_1250_1399 += 1
-        if 1500 <= int(entry["objektjahr"]) <= 1799:
+        elif 1500 <= int(entry["objektjahr"]) <= 1799:
             liste_dict_1500_1799.append({"name": entry["name"], "value": 1})
             anz_dict_1500_1599 += 1
-        if 1800 <= int(entry["objektjahr"]) <= 1999:
+        elif 1800 <= int(entry["objektjahr"]) <= 1999:
             liste_dict_1800_1999.append({"name": entry["name"], "value": 1})
             anz_dict_1750_1899 += 1
-        if 2000 <= int(entry["objektjahr"]) <= 2022:
+        elif 2000 <= int(entry["objektjahr"]) <= 2022:
             liste_dict_2000_2022.append({"name": entry["name"], "value": 1})
             anz_dict_2000_2009 += 1
         else:
-            print("\n")
+            print(int(entry["objektjahr"]))
 
     #Dictionaries zweiter Ebene erstellen
     dict_0_499 = {
@@ -124,7 +125,7 @@ def create_third_layer(data):
         "name": "1250-1499",
         "children": liste_dict_1250_1499}
     dict_1500_1799 = {
-        "name": "1500_1749",
+        "name": "1500_1799",
         "children": liste_dict_1500_1799}
     dict_1800_1999 = {
         "name": "1750_1999",
@@ -154,7 +155,6 @@ def create_third_layer(data):
             "name": "flare",
             "children": [dict_0_999, dict_1000_1499, dict_1500_1999, dict_2000_2022]
     }
-    print(dict_total)
     return dict_total
 
 
@@ -175,7 +175,7 @@ def write_file(data):
 def main():
     raw_data = read_file()
     cleaned_data = extract_info(raw_data)
-    delete_false(cleaned_data)
+    print(cleaned_data)
     final_data = create_third_layer(cleaned_data)
     write_file(final_data)
 
