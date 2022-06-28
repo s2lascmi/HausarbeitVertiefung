@@ -17,19 +17,10 @@ def extract_info(data):
     for data[i] in data:
         # Jahr als Dictionary-Eintrag hinzufügen (aus Name)
         year = data[i]["objekt_name"]
-        year_1 = year[-4:]
-        year_2 = year[-3:]
-        year_3 = year[-2:]
-        year_4 = year[-1:]
+        year = year[-4:]
         # Prüfen, ob year auch wirklich Jahreszahl ist oder nicht, wenn nicht "0" einfügen
-        if year_1.isdigit() == True:
-            data[i]["objektjahr"] = year_1
-        elif year_2.isdigit() == True:
-            data[i]["objektjahr"] = year_2
-        elif year_3.isdigit() == True:
-            data[i]["objektjahr"] = year_3
-        elif year_4.isdigit() == True:
-            data[i]["objektjahr"] = year_4
+        if year.isdigit():
+            data[i]["objektjahr"] = year
         else:
             data[i]["objektjahr"] = 102983
         # ID extrahieren
@@ -49,7 +40,7 @@ def extract_info(data):
     return data
 
 
-def create_1700(data):
+def create_1800(data):
 
     # Leere Listen erstellen
     liste_dict_1800_1809 = []
@@ -151,7 +142,7 @@ def write_file(data):
 def main():
     raw_data = read_file()
     cleaned_data = extract_info(raw_data)
-    final_data = create_1700(cleaned_data)
+    final_data = create_1800(cleaned_data)
     write_file(final_data)
 
 
