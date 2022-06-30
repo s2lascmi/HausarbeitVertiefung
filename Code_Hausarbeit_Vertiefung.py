@@ -49,6 +49,9 @@ def extract_info(data):
 
 
 def create_1800(data):
+    
+    # Erstellt die Gesamtstruktur der JSON-Datei, die dann in D3JS-Skript eingelesen wird
+    # Die Struktur besteht aus ineinander geschachtelten Dictionarys, welche letztendlich die einzelnen Detailebenen des Kuchendiagramms ergeben
 
     # Leere Listen für Jahrzehnte erstellen, in die die Objekte nach Jahr einsortiert werden
     liste_dict_1800_1809 = []
