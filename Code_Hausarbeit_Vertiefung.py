@@ -30,7 +30,7 @@ def extract_info(data):
         # ID extrahieren und für Enddatei als "Name" speichern, um Struktur des vorhandenen D3JS-Skripts zu imitieren
         # (in Enddatei wird das Sammlungsobjekt über die ID referenziert)
         id = data[i]["objekt_id"]
-        data[i]["name"] = str(id)
+        data[i]["name"] = "ID: " + str(id)
 
         # nicht nötige Key-Value-Paare entfernen
         data[i].pop("objekt_id")
@@ -148,7 +148,7 @@ def create_1800(data):
 def write_file(data):
 
     # JSON-Datei schreiben, die dann in D3JS-Skript verwendet wird
-    file_name = "my-data.json"
+    file_name = "objects-1800-1899.json"
     file = open(file_name, "w")
     json.dump(data, file)
     file.close()
