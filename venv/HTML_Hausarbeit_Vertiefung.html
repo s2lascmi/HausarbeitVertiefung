@@ -14,35 +14,67 @@
     }
 
     button {
-    background-color: #CAFF70;
+      background-color: #CAFF70;
     }
 
+    .Erklärung {
+      padding-left: 200px;
+      padding-right: 200px;
+    }
 
-
-  
- 
+    .Suchfeld {
+      background-color: beige;
+      padding: 20px 0px 20px 0px;
+    }
   </style>
 </head>
 
 <body>
-  <h1>Objekte des 19. Jahrhunderts</h1>
-  <h2>Übersichtsgrafik zu Objekten der <a href="https://www.landesmuseum-stuttgart.de/sammlung/sammlung-online">Sammlung Online</a> des <a href="https://www.landesmuseum-stuttgart.de">Landesmuseums Württemberg</a></h2>
-  <p>Klicken Sie auf einen der Zeitbereiche im Diagramm, um auf eine detailliertere Ebene der Visualisierung zu gelangen. Klicken Sie in die Mitte des Diagramms, um auf die nächsthöhere Ebene zurück zu springen.</p>
-  <p>Wenn Sie ein Objekt der Sammlung genauer recherchieren möchten, geben Sie die Objekt-ID aus der Grafik in das unten stehende Suchfeld ein. Sie werden direkt weitergeleitet.</p>
-  <form action="https://www.landesmuseum-stuttgart.de/sammlung/sammlung-online/dk-details?dk_object_id=">
-  <label>ID des Objekts:
-    <input type="number" name="dk_object_id" min="1" max="999999">
-  </label>
-  <button>Sammlung Online aufrufen</button>
-</form>
-  <p>Alternativ können Sie diesen <a href="https://www.landesmuseum-stuttgart.de/sammlung/sammlung-online/dk-details?dk_object_id=">Link</a> öffnen. Auf der sich öffnenden Webseite hängen Sie dann einfach die im Diagramm angezeigte Objekt-ID an die URL an.</p>
+  <div class="Erklärung">
+    <h1>Objekte des 19. Jahrhunderts</h1>
+    <h2>Übersichtsgrafik zu Objekten der <a
+        href="https://www.landesmuseum-stuttgart.de/sammlung/sammlung-online">Sammlung
+        Online</a> des <a href="https://www.landesmuseum-stuttgart.de">Landesmuseums Württemberg</a></h2>
+    <p>Klicken Sie auf einen der Zeitbereiche im Diagramm, um auf eine detailliertere Ebene der Visualisierung zu
+      gelangen. Klicken Sie in die Mitte des Diagramms, um auf die nächsthöhere Ebene zurück zu springen.</p>
+    <p>Die Flächenverteilung auf den einzelnen Ebene des Kreisdiagramms zeigt den prozentualen Anteil der Objekte aus
+      der
+      Sammlung für den dargestellten Zeitraum dar. Die Ausgangsvisualisierung zeigt also beispielsweise, dass aus dem
+      gesamten 19. Jahrhundert ca. zwei Drittel der Objekte zwischen 1800 und 1848 entstanden und ca. ein Drittel
+      zwischen
+      1850 und 1899.
+    </p>
+
+    <div class="Suchfeld">
+      <p>Wenn Sie ein Objekt der Sammlung genauer recherchieren möchten, geben Sie die Objekt-ID aus der Grafik in das
+        unten
+        stehende Suchfeld ein. Sie werden direkt weitergeleitet.</p>
+      <form action="https://www.landesmuseum-stuttgart.de/sammlung/sammlung-online/dk-details?dk_object_id=">
+        <label>ID des Objekts:
+          <input type="number" name="dk_object_id" min="1" max="999999">
+        </label>
+        <button>Sammlung Online aufrufen</button>
+      </form>
+      <p>Alternativ können Sie diesen <a
+          href="https://www.landesmuseum-stuttgart.de/sammlung/sammlung-online/dk-details?dk_object_id=">Link</a>
+        öffnen.
+        Auf der sich öffnenden Webseite hängen Sie dann einfach die im Diagramm angezeigte Objekt-ID an die URL an.</p>
+    </div>
+  </div>
+
   <iframe width="70%" height="1010" frameborder="0"
-  src="https://observablehq.com/embed/@s2lascmi/zoomable-sunburst?cells=chart"></iframe>
-  <p>Die Grafik wurde erstellt auf Basis des Skripts <a href="https://observablehq.com/@d3/zoomable-sunburst">"Zoomable Sunburst"</a> 
-    der <a href="https://d3js.org">D3JS-Bibliothek</a>. Das leicht angepasste Skript zu dieser Grafik kann 
-    <a href="https://observablehq.com/@s2lascmi/zoomable-sunburst">hier</a> abgerufen werden.</p>
+    src="https://observablehq.com/embed/@s2lascmi/zoomable-sunburst?cells=chart"></iframe>
+
+  <div class="Erklärung">
+    <p>Die Grafik wurde erstellt auf Basis des Skripts <a
+        href="https://observablehq.com/@d3/zoomable-sunburst">"Zoomable Sunburst"</a>
+      der <a href="https://d3js.org">D3JS-Bibliothek</a>. Das leicht angepasste Skript zu dieser Grafik kann
+      <a href="https://observablehq.com/@s2lascmi/zoomable-sunburst">hier</a> abgerufen werden.
+    </p>
     <br>
-    <p>Diese Grafik wird unter der <a href="https://creativecommons.org/licenses/by/2.0/de/">Creative Commons Lizenz CC BY</a> bereitgestellt.</p>
+    <p>Diese Grafik wird unter der <a href="https://creativecommons.org/licenses/by/2.0/de/">Creative Commons Lizenz CC
+        BY</a> bereitgestellt.</p>
+  </div>
 </body>
 
 </html>
